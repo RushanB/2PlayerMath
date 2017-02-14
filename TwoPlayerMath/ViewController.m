@@ -27,9 +27,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
-    
-    self.gameModel = [[GameModel alloc] init];
-    self.playerQuestion.text = [self.gameModel generateQuestion];
+    [self restartGame];
 }
 
 
@@ -38,27 +36,31 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)restartGame {
+    
+    self.gameModel = [[GameModel alloc] init];
+    self.playerQuestion.text = [self.gameModel generateQuestion];
+    
+}
+
 - (IBAction)pressNumber:(id)sender
 {
     NSString *guessingString = [self.answerField.text stringByAppendingString:[sender currentTitle]];
     
     [self.answerField setText:guessingString];
     
-    [self.gameModel checkAnswer:[guessingString intValue]];
     
 
-    
 }
 
 - (IBAction)pressEnter:(id)sender {
     
-    [self.answerField setText:nil];
+    [self.gameModel checkAnswer:[self.answerField.text intValue]];
     
+    [self.answerField setText:nil];
     
     //checking if game is over, sending an alert to restart the game
     if (self.gameModel.gameOver) {
-        
-        self.playerQuestion.text = [self.gameModel gameOverMessage];
         
         UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"GAME OVER!"
                                                                        message:@"Would you like to play again?"
@@ -69,11 +71,8 @@
         
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
-        
-        ViewController *newGame = [[ViewController alloc] init];
-        [newGame viewDidLoad];
-        
-        
+        [self restartGame];
+
     }else if (self.gameModel.currentPlayer == self.gameModel.player1) {
         
         self.player1Score.text = [self.gameModel displayScore];

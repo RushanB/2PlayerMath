@@ -20,11 +20,6 @@
     return self;
 }
 
-//- (void)loseALife
-//{
-//    self.lives--;
-//    
-//}
 
 
 @end
