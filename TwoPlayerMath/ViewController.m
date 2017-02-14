@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *player2Score;
 
 @property (nonatomic, strong) GameModel *gameModel;
+@property (weak, nonatomic) IBOutlet UITextField *answerField;
+
 
 @end
 
@@ -36,38 +38,44 @@
     // Dispose of any resources that can be recreated.
 }
 
-
-- (IBAction)press1:(id)sender {
-}
-
-- (IBAction)press2:(id)sender {
-}
-
-- (IBAction)press3:(id)sender {
-}
-
-- (IBAction)press4:(id)sender {
-}
-
-- (IBAction)press5:(id)sender {
-}
-
-- (IBAction)press6:(id)sender {
-}
-
-- (IBAction)press7:(id)sender {
-}
-
-- (IBAction)press8:(id)sender {
-}
-
-- (IBAction)press9:(id)sender {
-}
-
-- (IBAction)press0:(id)sender {
+- (IBAction)pressNumber:(id)sender
+{
+    NSString *guessingString = [self.answerField.text stringByAppendingString:[sender currentTitle]];
+    
+    [self.answerField setText:guessingString];
+    
+    [self.gameModel checkAnswer:[guessingString intValue]];
+    
+    if (self.gameModel.gameOver) {
+        
+        self.playerQuestion.text = [self.gameModel gameOverMessage];
+        
+    }
+    
 }
 
 - (IBAction)pressEnter:(id)sender {
+    
+    [self.answerField setText:nil];
+    
+    if (self.gameModel.currentPlayer == self.gameModel.player1) {
+        
+        self.player1Score.text = [self.gameModel displayScore];
+        
+        self.gameModel.currentPlayer = self.gameModel.player2;
+        
+        self.playerQuestion.text = [self.gameModel generateQuestion];
+        
+    }else{
+        
+        self.player2Score.text = [self.gameModel displayScore];
+        
+        self.gameModel.currentPlayer = self.gameModel.player1;
+        
+        self.playerQuestion.text = [self.gameModel generateQuestion];
+        
+    }
+    
 }
 
 @end

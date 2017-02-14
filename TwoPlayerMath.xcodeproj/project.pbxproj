@@ -75,7 +75,6 @@
 				5D107C201E52797900FEFDC6 /* GameModel.m */,
 				5DAEB6A81E526F6D004EFDD2 /* Assets.xcassets */,
 				5DAEB6AA1E526F6D004EFDD2 /* LaunchScreen.storyboard */,
-				5DAEB6AD1E526F6D004EFDD2 /* Info.plist */,
 				5DAEB69C1E526F6D004EFDD2 /* Supporting Files */,
 			);
 			path = TwoPlayerMath;
@@ -84,6 +83,7 @@
 		5DAEB69C1E526F6D004EFDD2 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				5DAEB6AD1E526F6D004EFDD2 /* Info.plist */,
 				5DAEB69D1E526F6D004EFDD2 /* main.m */,
 			);
 			name = "Supporting Files";

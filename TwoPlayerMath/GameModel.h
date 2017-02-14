@@ -17,9 +17,20 @@
 @property (nonatomic, strong) Player *player2;
 @property (nonatomic, strong) Player *currentPlayer;
 
+@property (nonatomic, strong) NSMutableString *guess;
+@property (nonatomic, assign) int answer;
+
+
 
 
 - (NSString *)generateQuestion;
+
+- (void)checkAnswer:(int)guessAnswer;
+
+- (NSString *)displayScore;
+
+- (BOOL)gameOver;
+- (NSString *)gameOverMessage;
 
 
 @end

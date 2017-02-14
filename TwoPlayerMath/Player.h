@@ -14,9 +14,10 @@
 
 @property (nonatomic, assign) int lives;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, assign) int score;
 
 - (instancetype)initWithName:(NSString *)name;
 
-- (int) loseALife;
+- (void)loseALife;
 
 @end

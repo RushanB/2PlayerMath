@@ -20,11 +20,10 @@
     return self;
 }
 
-- (int)loseALife
+- (void)loseALife
 {
-    self.lives -= 1;
+    self.lives--;
     
-    return self.lives;
 }
 
 
