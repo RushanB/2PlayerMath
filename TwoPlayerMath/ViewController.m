@@ -46,11 +46,7 @@
     
     [self.gameModel checkAnswer:[guessingString intValue]];
     
-    if (self.gameModel.gameOver) {
-        
-        self.playerQuestion.text = [self.gameModel gameOverMessage];
-        
-    }
+
     
 }
 
@@ -58,7 +54,27 @@
     
     [self.answerField setText:nil];
     
-    if (self.gameModel.currentPlayer == self.gameModel.player1) {
+    
+    //checking if game is over, sending an alert to restart the game
+    if (self.gameModel.gameOver) {
+        
+        self.playerQuestion.text = [self.gameModel gameOverMessage];
+        
+        UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"GAME OVER!"
+                                                                       message:@"Would you like to play again?"
+                                                                preferredStyle:UIAlertControllerStyleAlert];
+        
+        UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                              handler:^(UIAlertAction * action) {}];
+        
+        [alert addAction:defaultAction];
+        [self presentViewController:alert animated:YES completion:nil];
+        
+        ViewController *newGame = [[ViewController alloc] init];
+        [newGame viewDidLoad];
+        
+        
+    }else if (self.gameModel.currentPlayer == self.gameModel.player1) {
         
         self.player1Score.text = [self.gameModel displayScore];
         

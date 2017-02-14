@@ -18,6 +18,6 @@
 
 - (instancetype)initWithName:(NSString *)name;
 
-- (void)loseALife;
+//- (void)loseALife;
 
 @end

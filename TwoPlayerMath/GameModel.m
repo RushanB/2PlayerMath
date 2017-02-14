@@ -48,7 +48,7 @@
         
     }else{
         
-        [self.currentPlayer loseALife];
+        self.currentPlayer.lives --;
         
     }
     
