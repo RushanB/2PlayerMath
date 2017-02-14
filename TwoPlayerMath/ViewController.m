@@ -41,6 +41,9 @@
     self.gameModel = [[GameModel alloc] init];
     self.playerQuestion.text = [self.gameModel generateQuestion];
     
+    self.player1Score.text = self.gameModel.displayScore;
+    self.player2Score.text = self.gameModel.displayScore;
+    
 }
 
 - (IBAction)pressNumber:(id)sender
@@ -48,8 +51,6 @@
     NSString *guessingString = [self.answerField.text stringByAppendingString:[sender currentTitle]];
     
     [self.answerField setText:guessingString];
-    
-    
 
 }
 
@@ -67,11 +68,11 @@
                                                                 preferredStyle:UIAlertControllerStyleAlert];
         
         UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
-                                                              handler:^(UIAlertAction * action) {}];
+                                                              handler:^(UIAlertAction * action) {[self restartGame];}];
         
         [alert addAction:defaultAction];
         [self presentViewController:alert animated:YES completion:nil];
-        [self restartGame];
+        
 
     }else if (self.gameModel.currentPlayer == self.gameModel.player1) {
         
